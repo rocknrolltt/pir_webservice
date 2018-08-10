@@ -1,0 +1,57 @@
+---
+database_configurations:
+    dev_test:
+        credentials:
+            ro:
+                - pir_read
+                - PG_rated
+            update:
+                - pir_write
+                - be_gentle
+            admin:
+                - pir_admin
+                - archiver
+        host: ut-pgdb01
+        port: 5432
+        dbname: pir_test
+        dbtype: postgresql
+    production:
+        credentials:
+            ro:
+                - pir_read
+                - PG_rated
+            update:
+                - pir_write
+                - be_gentle
+            admin:
+                - pir_admin
+                - archiver
+        host: ut-pgdb01
+        port: 5432
+        dbname: pir_oper
+        dbtype: postgresql
+monitoring_configurations:
+    dev_test:
+        server: localhost
+        from: PIR_MONITORING@ut-wsint01.aer.com
+        to:
+            - msze@verisk.com
+        failed_threshold: 10
+        long_threshold: 5
+    production:
+        server: localhost
+        from: PIR_MONITORING@ut-wsint01.aer.com
+        to:
+            - smassa@verisk.com
+            - asamanta@verisk.com
+            - msze@verisk.com
+        failed_threshold: 10
+        long_threshold: 5
+user_database_configurations:
+    # path to web user database (sqlite)
+    dev_test:
+        path: web/tests/unittest_user.db
+    production:
+        path: /Production/PIR/database/pir.db
+    unittest:
+        path: web/tests/unittest_user.db
